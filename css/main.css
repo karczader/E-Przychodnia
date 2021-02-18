@@ -70,6 +70,8 @@ article{
     margin-left: 150px;
     margin-right: 150px;
     padding-top: 50px;
-    height: 450px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    min-height: 450px;
     text-align: justify;
 }

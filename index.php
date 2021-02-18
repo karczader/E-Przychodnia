@@ -18,21 +18,21 @@
 
     <body>
 
-        <header id="logo_header">
+        <header>
             <p class="main_header">WITAJ W E-PRZYCHODNI</p>
         </header>
 
-       <main>
+       <main class="container">
            <div id="hello_page">
 
-                    <a href="main_patient.php">
+                    <a href="login_patient.php">
                         <div class="hello_img">
                             <i class="icon-child"></i><br/>
                             <p class="hello_choice">Jestem pacjentem</p>
                         </div>
                     </a>
 
-                    <a href="main_doctor.php">
+                    <a href="login_doctor.php">
                         <div class="hello_img">
                             <i class="icon-user-md"></i><br/>
                             <p class="hello_choice">Jestem lekarzem</p>

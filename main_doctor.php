@@ -2,7 +2,7 @@
 <html lang="pl">
     <head>
         <meta charset="utf-8"/>
-        <title>E-Przychodnia: Pacjent</title>
+        <title>E-Przychodnia: Doctor</title>
         <meta name="description" content=""/>
         <meta nane="keywords" content=""/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
@@ -23,17 +23,15 @@
        
 
         <header id="logo_header">
-            <p class="main_header">CZEŚĆ PACJENCIE</p>
+            <p class="main_header">CZEŚĆ DOKTORZE :)</p>
         </header>
 
         <nav>
 
             <ol>
-                <a href="main_patient.php"><li>Strona główna</li></a>
-                <a href="#"><li>Rejestracja na wizytę</li> </a>
-                <a href="#"><li>Historia chorób</li> </a>
-                <a href="#"><li>Aktualne leki</li></a>
-                <a href="#"><li>Powiadomienia</li></a>
+                <a href="main_doctor.php"><li>Strona główna</li></a>
+                <a href="#"><li>Spis pacjentów</li> </a>
+                <a href="#"><li>Podanie o urlop</li> </a>
                 <a href="#"><li>Kalendarz</li></a>
             </ol>   
         </nav>
@@ -60,3 +58,4 @@
        
     </body>
 </html> 
+
