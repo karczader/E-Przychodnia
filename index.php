@@ -19,7 +19,7 @@
     <body>
 
         <header id="logo_header">
-            <p id="main_header">WITAJ W E-PRZYCHODNI</p>
+            <p class="main_header">WITAJ W E-PRZYCHODNI</p>
         </header>
 
        <main>
