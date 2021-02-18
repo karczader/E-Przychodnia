@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if ((isset($_SESSION['ifLogin'])) && ($_SESSION['ifLogin']==true))
+	{
+		header('Location: main_patient.php');
+		exit();
+	}
+?>
 <!DOCTYPE html>
 <html lang="pl">
     <head>
@@ -27,16 +35,20 @@
             <form action="login_check_patient.php" method="post" class="login_form">
 
                 E-mail<br/> 
-                <input type="text" name="login"/ placeholder="jan.kowalski@gmail.com">
+                <input type="text" name="login" placeholder="jan.kowalski@gmail.com"/>
                 <br/> 
 
                 Hasło<br/> 
-                <input type="password" name="haslo"/ placeholder="********">
+                <input type="password" name="password" placeholder="********"/>
                 <br/><br/>
 
                 <input type="submit" value="Zaloguj się!"/>
 
             </form>
+
+            <?php   
+            if (isset($_SESSION['error_login'])) echo $_SESSION['error_login'];
+        ?>
            
        </main>
 

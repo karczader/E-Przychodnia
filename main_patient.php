@@ -17,7 +17,7 @@
     </head>
 
     <body>
-            <a href="index.php" class="logout_text">
+            <a href="logout.php" class="logout_text">
                 <div class="logout">Wyloguj się </div>
             </a>
        
