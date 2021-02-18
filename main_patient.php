@@ -8,6 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
 
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
+        <link rel="stylesheet" href="css/main_patient_css.css" type="text/css"/>
         <link rel="stylesheet" href="css/fontello.css" type="text/css" />
         <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet"> 
         
@@ -18,30 +19,11 @@
     <body>
 
         <header id="logo_header">
-            <p id="main_header">WITAJ W E-PRZYCHODNI</p>
+            <p id="main_header">CZEŚĆ PACJENCIE</p>
         </header>
 
        <main>
-           <div id="hello_page">
-
-                    <a href="main_doctor.php">
-                        <div class="hello_img">
-                            <i class="icon-user-md"></i><br/>
-                            Jestem lekarzem
-                        </div>
-                    </a>
-                       
-
-                    <a href="main_patient.php">
-                        <div class="hello_img">
-                            <i class="icon-child"></i><br/>
-                            Jestem pacjentem
-                        </div>
-                    </a>
-
-                <div style="clear:both";></div>
-
-           </div>
+         
        </main>
 
        <footer>
@@ -50,4 +32,4 @@
     
        
     </body>
-</html>
+</html> 

@@ -1,0 +1,49 @@
+#logo_header{
+    /*background-color: chartreuse;*/
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-size: 48px;
+    width: 100%;
+}
+
+#main_header{
+    border-bottom: #3399FF solid 4px;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#hello_page{
+    /*background-color: blue;*/
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.hello_img{
+    float: left;
+    text-align: center;
+    width: 400px;
+    padding: 40px;
+    height: 460px;
+    background-color: #33ccff;
+    margin-left: 10px;
+    margin-right: 10px;
+    color:#003399;
+}
+
+.hello_choice{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 48px;
+}
+
+.hello_img:hover{
+    color: white;
+    background-color: #3399FF;
+} 
