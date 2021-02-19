@@ -1,10 +1,15 @@
 <?php
+
+
+    echo $_SESSION['error_email'];
+    
     session_start();
     if ((isset($_SESSION['ifLoginP'])) && ($_SESSION['ifLoginP']==true))
 	{
 		header('Location: main_patient.php');
 		exit();
 	}
+
 ?>
 
 <!DOCTYPE html>
@@ -27,15 +32,15 @@
 
     <body>
 
-        <a href="index.php"><div class="registration" style="margin-left: 10px;" >Powtór do strony głównej</div></a>
+        <a href="index.php"><div class="back" style="margin-left: 10px;" >Powrót do strony głównej</div></a>
 
         <header id="logo_header">
             <p class="main_header">Zarejestruj SIĘ</p>
         </header>
 
-       <main class="container">
+       <main class>
 
-            <form style="height: 870px; padding-top: 50px;" action="registration_check_patient.php" method="post" class="login_form">
+            <form style="height: 900px; padding-top: 50px;" action="registration_check_patient.php" method="post" class="login_form">
 
                 Imię<br/> 
                 <input type="text" name="firstName" placeholder="Jan"/>
@@ -57,13 +62,6 @@
                 <input type="text" name="email" placeholder="jan.kowalski@gmail.com"/>
                 <br/> 
 
-                <?php
-                if(isset($_SESSION['e_email'])){
-                    echo '<div class="error">'.$_SESSION['e_email'].'</div>';
-                    unset($_SESSION['e_email']);
-                }
-                ?>
-
                 Pesel<br/> 
                 <input type="text" name="pesel" placeholder="20874698725"/>
                 <br/> 
@@ -76,27 +74,28 @@
                 <input type="password" name="password1" placeholder="********"/>
                 <br/><br/>
 
-                <?php
-                if(isset($_SESSION['e_haslo'])){
-                    echo '<div class="error">'.$_SESSION['e_haslo'].'</div>';
-                    unset($_SESSION['e_haslo']);
-                }
-                ?>
-
                 Powtórz hasło<br/> 
                 <input type="password" name="password2" placeholder="********"/>
                 <br/><br/>
-
+            
+                <?php
+                if(isset($_SESSION['error_password'])){
+                    echo $_SESSION['error_password'];
+                    unset($_SESSION['error_password']);
+                }
+                ?>
+                
                 <input type="submit" value="Zarejestruj się!"/>
 
             </form>
-
+           
            
        </main>
     
 
-       <!--tu tych br nie moze byc, stopka powinna wrocic-->
-       <br/><br/>
+       <footer>
+            Wszystkie prawa zastrzeżone &copy; 2021
+       </footer>
     
        
     </body>

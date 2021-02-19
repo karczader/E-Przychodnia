@@ -27,11 +27,13 @@
 
     <body>
 
+        <a href="index.php"><div class="back" style="margin-left: 10px;" >Powrót do strony głównej</div></a>
+
         <header id="logo_header">
             <p class="main_header">ZALOGUJ SIĘ NA SWOJE KONTO</p>
         </header>
 
-       <main class="container">
+       <main class>
 
 
             <form action="login_check_patient.php" method="post" class="login_form">
@@ -54,7 +56,10 @@
                 <br/><br/>
 
                 <?php   
-                if (isset($_SESSION['error_login'])) echo $_SESSION['error_login'];
+                    if (isset($_SESSION['error_login'])) {
+                        echo $_SESSION['error_login'];
+                        unset($_SESSION['error_login']);
+                    }
                 ?>
 
                 <input type="submit" value="Zaloguj się!"/>

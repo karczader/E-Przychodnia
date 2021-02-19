@@ -27,7 +27,6 @@
         $login=$_POST['login'];
         $login = htmlentities($login, ENT_QUOTES, "UTF-8"); //sprawdzenie danych, wstawienie encji html
         $password=$_POST['password'];
-        $password = htmlentities($password, ENT_QUOTES, "UTF-8"); //sprawdzenie danych, wstawienie encji html
 
         //zapamietanie danych
         $_SESSION['f_login']=$login;
@@ -55,9 +54,15 @@
                     //if($password== $user['HashPassword'])
                     {
 
-                        echo "hej";
                         $_SESSION['ifLoginP']=true;
-                        //zczytac reszte danych!!!!!!!!!!!!!!!!!!!!
+                        $_SESSION['IdPatient']=$user['IdPatient'];
+                        $_SESSION['FirstName']=$user['FirstName'];
+                        $_SESSION['SecondName']=$user['SecondName'];
+                        $_SESSION['DateOfBirth']=$user['DateOfBirth'];
+                        $_SESSION['Locality']=$user['Locality'];
+                        $_SESSION['Email']=$user['Email'];
+                        $_SESSION['Pesel']=$user['Pesel'];
+                        $_SESSION['PhoneNumber']=$user['PhoneNumber'];
 
                         if(isset($_SESSION['error_login'])) unset($_SESSION['error_login']);
                         $results->close();

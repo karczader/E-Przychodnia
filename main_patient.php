@@ -1,3 +1,9 @@
+<?php
+
+    session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
     <head>
@@ -23,7 +29,7 @@
        
 
         <header id="logo_header">
-            <p class="main_header">CZEŚĆ PACJENCIE</p>
+            <p class="main_header">WITAJ <?php echo $_SESSION['FirstName'].' '.$_SESSION['SecondName']?></p>
         </header>
 
         <nav>
@@ -35,6 +41,7 @@
                 <a href="#"><li>Aktualne leki</li></a>
                 <a href="#"><li>Powiadomienia</li></a>
                 <a href="#"><li>Kalendarz</li></a>
+                <a href="#"><li>Edytuj dane</li></a>
             </ol>   
         </nav>
 
