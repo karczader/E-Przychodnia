@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    if ((isset($_SESSION['ifLoginP'])) && ($_SESSION['ifLoginP']==true))
+	{
+		header('Location: main_patient.php');
+		exit();
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
     <head>
@@ -8,7 +17,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
 
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        <link rel="stylesheet" href="css/index_css.css" type="text/css"/>
+        <link rel="stylesheet" href="css/index.css" type="text/css"/>
         <link rel="stylesheet" href="css/fontello.css" type="text/css" />
         <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet"> 
         
@@ -19,7 +28,7 @@
     <body>
 
         <header>
-            <p class="main_header">WITAJ W E-PRZYCHODNI</p>
+            <p class="main_header">Witaj W E-PRZYCHODNI</p>
         </header>
 
        <main class="container">
