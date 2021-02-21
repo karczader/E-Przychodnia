@@ -40,7 +40,7 @@
                 <a href="#"><li>Spis pacjentów</li> </a>
                 <a href="#"><li>Podanie o urlop</li> </a>
                 <a href="#"><li>Kalendarz</li></a>
-                <a href="#"><li>Edytuj dane</li></a>
+                <a href="edit_data_doctor.php"><li>Edytuj dane</li></a>
                 
             </ol>   
         </nav>

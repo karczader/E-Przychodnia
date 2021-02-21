@@ -86,17 +86,40 @@
 
                     <div class="form_element">E-mail<br>
                         <input type="text" name="newEmail" value="<?php
-                        if(isset($_SESSION['Email'])){
+                         if(isset($_SESSION['emailF'])){
+                            echo $_SESSION['emailF'];
+                            unset($_SESSION['emailF']);
+                        }
+                        else if(isset($_SESSION['Email'])){
                             echo $_SESSION['Email'];
-                        }?>"/>
+                        }
+                       ?>"/>
                     </div>
+
+                    <?php
+                    if(isset($_SESSION['error_email'])){
+                        echo $_SESSION['error_email'];
+                        unset($_SESSION['error_email']);
+                    }
+                    ?>
 
                     <div class="form_element">Pesel<br>
                         <input type="text" name="newPesel" value="<?php
-                        if(isset($_SESSION['Pesel'])){
+                         if(isset($_SESSION['peselF'])){
+                            echo $_SESSION['peselF'];
+                            unset($_SESSION['peselF']);
+                        }
+                        else if(isset($_SESSION['Pesel'])){
                             echo $_SESSION['Pesel'];
                         }?>"/>
                     </div>
+
+                    <?php
+                    if(isset($_SESSION['error_pesel'])){
+                        echo $_SESSION['error_pesel'];
+                        unset($_SESSION['error_pesel']);
+                    }
+                    ?>
 
                     <div class="form_element">Numer telefonu<br>
                         <input type="text" name="newPhoneNumber" value="<?php
@@ -105,9 +128,28 @@
                         }?>"/>
                     </div>
 
-                    <input type="submit" value="Zapisz zmiany"/>
+                    <div class="form_element">Hasło<br>
+                        <input type="password" name="newPassword" value="********"/>
+                    </div>
+
+                    <?php
+                    if(isset($_SESSION['error_password'])){
+                        echo $_SESSION['error_password'];
+                        unset($_SESSION['error_password']);
+                    }
+                    ?>
+
+                    <div>
+                        <div><input style="float:left;" type="submit" value="Zapisz zmiany"/></div>
+                        <a style="float:left;" href="main_patient.php"><div id="back">Anuluj</div></a>
+                        <div style="clear:both";></div>
+                    </div>
+
+                   
 
                 </form>
+
+
             </article>
 
         </main>

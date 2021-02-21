@@ -56,7 +56,7 @@
                     {
 
                         $_SESSION['ifLoginD']=true;
-                        $_SESSION['IdDoctor']=$user['IdDoctor'];
+                        $_SESSION['IdDoctor']=$user['NrDoctor'];
                         $_SESSION['FirstName']=$user['FirsName'];
                         $_SESSION['SecondName']=$user['SecondName'];
                         $_SESSION['Specialization']=$user['Specialization'];
