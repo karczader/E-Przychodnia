@@ -1,0 +1,43 @@
+article{
+    border: 1px solid rgb(48, 48, 48);
+    margin-right: auto;
+    margin-left: auto;
+    width: 1000px;
+    margin-top: 50px;
+}
+
+h3{
+    border-bottom: 1px solid rgb(48, 48, 48);
+    margin: 0px;
+    padding: 5px;
+    text-transform: uppercase;
+    height: 30px;
+}
+
+.form_element{
+    margin-top: 20px;
+    margin-left: 50px;
+    font-size: 20px;
+}
+
+input[type=text]
+input[type=data]
+input[type=password]
+{
+    font-size: 16px;  
+    color: rgb(48, 48, 48);
+    min-width: 200px;
+}
+
+input[type=submit]
+{
+    margin-left: 50px;
+    width: 200px;
+    background-color: #003399;
+    font-size: 16px;
+    padding: 2px;
+    color: white;
+    margin-top: 30px;
+    cursor: pointer; 
+    text-transform: uppercase;
+}

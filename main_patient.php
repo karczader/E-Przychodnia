@@ -3,7 +3,6 @@
     session_start();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="pl">
     <head>
@@ -41,7 +40,7 @@
                 <a href="#"><li>Aktualne leki</li></a>
                 <a href="#"><li>Powiadomienia</li></a>
                 <a href="#"><li>Kalendarz</li></a>
-                <a href="#"><li>Edytuj dane</li></a>
+                <a href="edit_data_patient.php"><li>Edytuj dane</li></a>
             </ol>   
         </nav>
 
