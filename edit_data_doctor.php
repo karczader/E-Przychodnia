@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    if (!isset($_SESSION['ifLoginD'])) header('Location: index.php');
 
 ?>
 
@@ -30,8 +31,7 @@
        
 
         <header id="logo_header">
-            <p class="main_header">WITAJ DOKTORZE <?php echo $_SESSION['FirstName'].' '.$_SESSION['SecondName'];?> :)</p>
-
+            
         </header>
 
         <nav>
@@ -40,7 +40,7 @@
                 <a href="main_doctor.php"><li>Strona główna</li></a>
                 <a href="#"><li>Spis pacjentów</li> </a>
                 <a href="#"><li>Podanie o urlop</li> </a>
-                <a href="#"><li>Kalendarz</li></a>
+                <a href="calendar_doctor.php"><li>Kalendarz</li></a>
                 <a href="edit_data_doctor.php"><li>Edytuj dane</li></a>
                 
             </ol>   

@@ -1,6 +1,8 @@
 <?php
 
     session_start();
+    if (!isset($_SESSION['ifLoginP'])) header('Location: index.php');
+
 
 ?>
 <!DOCTYPE html>
@@ -39,7 +41,7 @@
                 <a href="#"><li>Historia chorób</li> </a>
                 <a href="#"><li>Aktualne leki</li></a>
                 <a href="#"><li>Powiadomienia</li></a>
-                <a href="#"><li>Kalendarz</li></a>
+                <a href="calendar_patient.php"><li>Kalendarz</li></a>
                 <a href="edit_data_patient.php"><li>Edytuj dane</li></a>
             </ol>   
         </nav>

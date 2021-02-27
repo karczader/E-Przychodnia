@@ -36,10 +36,10 @@
         $sql="SELECT * FROM Patiens WHERE Email='$login' AND HashPassword='$password'";
 
 
-        if ($results = @$connection->query(
+            if ($results = @$connection->query(
             sprintf("SELECT * FROM Patiens WHERE Email='%s'",
             mysqli_real_escape_string($connection,$login))))
-        {
+            {
 
                 //ilu userow zwrocila baza?
                 $howManyUsers=$results->num_rows;

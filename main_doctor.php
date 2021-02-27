@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    if (!isset($_SESSION['ifLoginD'])) header('Location: index.php');
 
 ?>
 
@@ -23,7 +24,7 @@
     </head>
 
     <body>
-            <a href="index.php" class="logout_text">
+            <a href="logout.php" class="logout_text">
                 <div class="logout">Wyloguj się </div>
             </a>
        
@@ -39,7 +40,7 @@
                 <a href="main_doctor.php"><li>Strona główna</li></a>
                 <a href="#"><li>Spis pacjentów</li> </a>
                 <a href="#"><li>Podanie o urlop</li> </a>
-                <a href="#"><li>Kalendarz</li></a>
+                <a href="calendar_doctor.php"><li>Kalendarz</li></a>
                 <a href="edit_data_doctor.php"><li>Edytuj dane</li></a>
                 
             </ol>   
