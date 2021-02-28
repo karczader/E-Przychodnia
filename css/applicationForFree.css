@@ -1,0 +1,25 @@
+.window{
+    margin: 30px;
+} 
+
+fieldset{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 450px;
+    background-color: #efefef;
+    color: rgb(48, 48, 48);
+    border: 2px solid #3399FF;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 10px;
+    box-sizing: border-box; 
+    outline: none;
+}
+
+form{
+    width: 600px;
+    margin-left: 300px;
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px rgb(48, 48, 48) solid;
+}

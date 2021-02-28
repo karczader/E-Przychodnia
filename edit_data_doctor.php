@@ -38,8 +38,8 @@
 
             <ol>
                 <a href="main_doctor.php"><li>Strona główna</li></a>
-                <a href="#"><li>Spis pacjentów</li> </a>
-                <a href="#"><li>Podanie o urlop</li> </a>
+                <a href="list_patients.php"><li>Spis pacjentów</li> </a>
+                <a href="application_for_free.php"><li>Podanie o urlop</li> </a>
                 <a href="calendar_doctor.php"><li>Kalendarz</li></a>
                 <a href="edit_data_doctor.php"><li>Edytuj dane</li></a>
                 

@@ -3,15 +3,16 @@
     session_start();
     if (!isset($_SESSION['ifLoginD'])) header('Location: index.php');
 
+    //polaczenie z baza
     require_once "connect.php";
     $connection= @new mysqli($host, $db_user, $db_password, $db_name);
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="pl">
     <head>
         <meta charset="utf-8"/>
-        <title>E-Przychodnia: Kalendarz</title>
+        <title>E-Przychodnia: Spis pacjetnów</title>
         <meta name="description" content=""/>
         <meta nane="keywords" content=""/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
@@ -26,13 +27,13 @@
     </head>
 
     <body>
-            <a href="index.php" class="logout_text">
+            <a href="logout.php" class="logout_text">
                 <div class="logout">Wyloguj się </div>
             </a>
        
 
         <header id="logo_header">
-            <p class="main_header">Kalendarz</p>
+            <p class="main_header">Spis pacjentów</p>
 
         </header>
 
@@ -52,44 +53,40 @@
 
             <article>
 
-            <h2>Zaplanowane wizyty:</h2>
-            <?php  
+                <?php
+                
+                    //sprawdzenie czy udalo sie polaczyc z baza
+                    if($connection->connect_errno!=0){
+                        echo "Error: ".$connection->conncect_errno;
+                    }
+                    else{
 
-                if($connection->connect_errno!=0){
-                    echo "Error: ".$connection->conncect_errno;
-                }
-                else{
-                    $id=$_SESSION['IdDoctor']; 
-                    $sql="SELECT * FROM Visits WHERE NrDoctor='$id' ORDER BY Visits.Time";
-                    $actualDate=date("Y-m-d");
-
-                    if($results = @$connection->query($sql)){
-                        $counter=0;
-                        $numberVisits=$results->num_rows;
-                        while ($user=mysqli_fetch_assoc($results)){
-                            $array[$counter]=$user;
-                            $counter++;
-                        }
-                        for ($i=0; $i<$numberVisits; $i++){
-                            $time=$array[$i]['Time'];
-                            if ($time>=$actualDate){
-                                $patient=$array[$i]['IdPatient'];
-                                $sql="SELECT * FROM Patiens WHERE IdPatient='$patient'";
-                                if($results2 = @$connection->query($sql)){
+                        $id=$_SESSION['IdDoctor'];
+                        $sql="SELECT * FROM ListOfPatients WHERE NrDoctor='$id'";
+                        if ($results = @$connection->query($sql)){
+                            $counter=0;
+                            $number=$results->num_rows;
+                            while ($user=mysqli_fetch_assoc($results)){
+                                $array[$counter]=$user;
+                                $counter++;
+                            }
+                            for ($i=0; $i<$number; $i++){
+                                $idPatient=$array[$i]['IdPatient'];
+                                $sql2="SELECT * FROM Patiens WHERE IdPatient='$idPatient'";
+                                if($results2 = @$connection->query($sql2)){
                                     $row=$results2->fetch_assoc();
                                     $name=$row['FirstName'];
                                     $secondName=$row['SecondName'];
-                                    echo $time." -  pacjent: ".$name." ".$secondName."<br/> ";
+                                    echo "Pacjent: ".$name." ".$secondName."<br/> ";
                                 
                                 }
-
                             }
                         }
+                        $connection->close();
                     }
-                }
 
-            ?>
-
+                ?>
+                
             </article>
 
         </main>

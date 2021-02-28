@@ -54,8 +54,7 @@
 
         else {
 
-            //dodanie uzytkownika do bazy!!
-
+            //dodanie uzytkownika do bazy
             require_once "connect.php";
             $connection= @new mysqli($host, $db_user, $db_password, $db_name);
 

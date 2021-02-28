@@ -75,7 +75,7 @@
                         }
                         for ($i=0; $i<$numberVisits; $i++){
                             $time=$array[$i]['Time'];
-                            if ($time>$actualDate){
+                            if ($time>=$actualDate){
                                 $doctor=$array[$i]['NrDoctor'];
                                 $sql="SELECT * FROM Doctors WHERE NrDoctor='$doctor'";
                                 if($results2 = @$connection->query($sql)){
