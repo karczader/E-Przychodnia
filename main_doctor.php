@@ -30,7 +30,7 @@
        
 
         <header id="logo_header">
-            <p class="main_header">WITAJ DOKTORZE <?php echo $_SESSION['FirstName'].' '.$_SESSION['SecondName'];?> :)</p>
+            <p class="main_header">WITAJ <?php echo $_SESSION['FirstName'].' '.$_SESSION['SecondName'];?> :)</p>
 
         </header>
 

@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css" type="text/css"/>
-    <link rel="stylesheet" href="css/calendar.css" type="text/css"/>
+    <link rel="stylesheet" href="css/onepage.css" type="text/css"/>
     <link rel="stylesheet" href="css/fontello.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet"> 
     
@@ -41,8 +41,8 @@
         <ol>
             <a href="main_patient.php"><li>Strona główna</li></a>
             <a href="#"><li>Rejestracja na wizytę</li> </a>
-            <a href="#"><li>Historia chorób</li> </a>
-            <a href="#"><li>Aktualne leki</li></a>
+            <a href="history_medical.php"><li>Historia chorób</li> </a>
+            <a href="current_medications.php"><li>Aktualne leki</li></a>
             <a href="#"><li>Powiadomienia</li></a>
             <a href="calendar_patient.php"><li>Kalendarz</li></a>
             <a href="edit_data_patient.php"><li>Edytuj dane</li></a>
@@ -53,48 +53,50 @@
 
         <article>
 
-            <h2>Zaplanowane wizyty:</h2>
-            <?php
+            <h2>Zaplanowane wizyty</h2>
+            <ul>
+                <?php
 
-                if($connection->connect_errno!=0){
-                    echo "Error: ".$connection->conncect_errno;
-                }
-                else{
+                    if($connection->connect_errno!=0){
+                        echo "Error: ".$connection->conncect_errno;
+                    }
+                    else{
 
-                    $id=$_SESSION['IdPatient'];
-                    $sql="SELECT * FROM Visits WHERE IdPatient='$id' ORDER BY Visits.Time";
-                    $actualDate=date("Y-m-d");
-                    
-                    if($results = @$connection->query($sql)){
+                        $id=$_SESSION['IdPatient'];
+                        $sql="SELECT * FROM Visits WHERE IdPatient='$id' ORDER BY Visits.Time";
+                        $actualDate=date("Y-m-d");
                         
-                        $counter=0;
-                        $numberVisits=$results->num_rows;
-                        while ($user=mysqli_fetch_assoc($results)){
-                            $array[$counter]=$user;
-                            $counter++;
-                        }
-                        for ($i=0; $i<$numberVisits; $i++){
-                            $time=$array[$i]['Time'];
-                            if ($time>=$actualDate){
-                                $doctor=$array[$i]['NrDoctor'];
-                                $sql="SELECT * FROM Doctors WHERE NrDoctor='$doctor'";
-                                if($results2 = @$connection->query($sql)){
-                                    $row=$results2->fetch_assoc();
-                                    $name=$row['FirsName'];
-                                    $secondName=$row['SecondName'];
-                                    echo $time." -  doktor: ".$name." ".$secondName."<br/> ";
-                                
-                                }
-
-                            }
+                        if($results = @$connection->query($sql)){
                             
+                            $counter=0;
+                            $numberVisits=$results->num_rows;
+                            while ($user=mysqli_fetch_assoc($results)){
+                                $array[$counter]=$user;
+                                $counter++;
+                            }
+                            for ($i=0; $i<$numberVisits; $i++){
+                                $time=$array[$i]['Time'];
+                                if ($time>=$actualDate){
+                                    $doctor=$array[$i]['NrDoctor'];
+                                    $sql="SELECT * FROM Doctors WHERE NrDoctor='$doctor'";
+                                    if($results2 = @$connection->query($sql)){
+                                        $row=$results2->fetch_assoc();
+                                        $name=$row['FirsName'];
+                                        $secondName=$row['SecondName'];
+                                        echo "<li><b>".$time."</b><br/>Doktor: ".$name." ".$secondName."</li>";
+                                    
+                                    }
+
+                                }
+                                
+                            }
                         }
                     }
-                }
-                $connection->close();
+                    $connection->close();
 
-               
-            ?>
+                
+                ?>
+            <ul>
 
         </article>
 

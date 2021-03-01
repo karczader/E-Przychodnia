@@ -19,6 +19,7 @@
 
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <link rel="stylesheet" href="css/main.css" type="text/css"/>
+        <link rel="stylesheet" href="css/onepage.css" type="text/css"/>
         <link rel="stylesheet" href="css/fontello.css" type="text/css" />
         <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet"> 
         
@@ -52,40 +53,39 @@
         <main class="container">
 
             <article>
+                <ul>
+                    <?php
+                            if($connection->connect_errno!=0){
+                            echo "Error: ".$connection->conncect_errno;
+                        }
+                        else{
 
-                <?php
-                
-                    //sprawdzenie czy udalo sie polaczyc z baza
-                    if($connection->connect_errno!=0){
-                        echo "Error: ".$connection->conncect_errno;
-                    }
-                    else{
-
-                        $id=$_SESSION['IdDoctor'];
-                        $sql="SELECT * FROM ListOfPatients WHERE NrDoctor='$id'";
-                        if ($results = @$connection->query($sql)){
-                            $counter=0;
-                            $number=$results->num_rows;
-                            while ($user=mysqli_fetch_assoc($results)){
-                                $array[$counter]=$user;
-                                $counter++;
-                            }
-                            for ($i=0; $i<$number; $i++){
-                                $idPatient=$array[$i]['IdPatient'];
-                                $sql2="SELECT * FROM Patiens WHERE IdPatient='$idPatient'";
-                                if($results2 = @$connection->query($sql2)){
-                                    $row=$results2->fetch_assoc();
-                                    $name=$row['FirstName'];
-                                    $secondName=$row['SecondName'];
-                                    echo "Pacjent: ".$name." ".$secondName."<br/> ";
-                                
+                            $id=$_SESSION['IdDoctor'];
+                            $sql="SELECT * FROM ListOfPatients WHERE NrDoctor='$id'";
+                            if ($results = @$connection->query($sql)){
+                                $counter=0;
+                                $number=$results->num_rows;
+                                while ($user=mysqli_fetch_assoc($results)){
+                                    $array[$counter]=$user;
+                                    $counter++;
+                                }
+                                for ($i=0; $i<$number; $i++){
+                                    $idPatient=$array[$i]['IdPatient'];
+                                    $sql2="SELECT * FROM Patiens WHERE IdPatient='$idPatient'";
+                                    if($results2 = @$connection->query($sql2)){
+                                        $row=$results2->fetch_assoc();
+                                        $name=$row['FirstName'];
+                                        $secondName=$row['SecondName'];
+                                        echo "<li><b>".$name." ".$secondName."</li>";
+                                    
+                                    }
                                 }
                             }
+                            $connection->close();
                         }
-                        $connection->close();
-                    }
 
-                ?>
+                    ?>
+                </ul>
                 
             </article>
 

@@ -18,6 +18,7 @@
 
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <link rel="stylesheet" href="css/main.css" type="text/css"/>
+        <link rel="stylesheet" href="css/onepage.css" type="text/css"/>
         <link rel="stylesheet" href="css/fontello.css" type="text/css" />
         <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet"> 
         
@@ -52,43 +53,47 @@
 
             <article>
 
-            <h2>Zaplanowane wizyty:</h2>
-            <?php  
+            <h2>Zaplanowane wizyty</h2>
+            <ul>
+                <?php  
 
-                if($connection->connect_errno!=0){
-                    echo "Error: ".$connection->conncect_errno;
-                }
-                else{
-                    $id=$_SESSION['IdDoctor']; 
-                    $sql="SELECT * FROM Visits WHERE NrDoctor='$id' ORDER BY Visits.Time";
-                    $actualDate=date("Y-m-d");
+                    if($connection->connect_errno!=0){
+                        echo "Error: ".$connection->conncect_errno;
+                    }
+                    else{
+                        $id=$_SESSION['IdDoctor']; 
+                        $sql="SELECT * FROM Visits WHERE NrDoctor='$id' ORDER BY Visits.Time";
+                        $actualDate=date("Y-m-d");
 
-                    if($results = @$connection->query($sql)){
-                        $counter=0;
-                        $numberVisits=$results->num_rows;
-                        while ($user=mysqli_fetch_assoc($results)){
-                            $array[$counter]=$user;
-                            $counter++;
-                        }
-                        for ($i=0; $i<$numberVisits; $i++){
-                            $time=$array[$i]['Time'];
-                            if ($time>=$actualDate){
-                                $patient=$array[$i]['IdPatient'];
-                                $sql="SELECT * FROM Patiens WHERE IdPatient='$patient'";
-                                if($results2 = @$connection->query($sql)){
-                                    $row=$results2->fetch_assoc();
-                                    $name=$row['FirstName'];
-                                    $secondName=$row['SecondName'];
-                                    echo $time." -  pacjent: ".$name." ".$secondName."<br/> ";
-                                
+                        if($results = @$connection->query($sql)){
+                            $counter=0;
+                            $numberVisits=$results->num_rows;
+                            while ($user=mysqli_fetch_assoc($results)){
+                                $array[$counter]=$user;
+                                $counter++;
+                            }
+                            for ($i=0; $i<$numberVisits; $i++){
+                                $time=$array[$i]['Time'];
+                                if ($time>=$actualDate){
+                                    $patient=$array[$i]['IdPatient'];
+                                    $sql="SELECT * FROM Patiens WHERE IdPatient='$patient'";
+                                    if($results2 = @$connection->query($sql)){
+                                        $row=$results2->fetch_assoc();
+                                        $name=$row['FirstName'];
+                                        $secondName=$row['SecondName'];
+                                        echo "<li><b>".$time."<br></b>Pacjent: ".$name." ".$secondName."</li> ";
+                                    
+                                    }
+
                                 }
-
                             }
                         }
                     }
-                }
+                    $connection->close();
 
-            ?>
+
+                ?>
+            </ul>
 
             </article>
 
