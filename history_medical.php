@@ -29,6 +29,8 @@
             <a href="logout.php" class="logout_text">
                 <div class="logout">Wyloguj się </div>
             </a>
+
+            
        
 
         <header id="logo_header">
@@ -82,8 +84,8 @@
                                             $array2[$counter2]=$user2;
                                             $counter2++;
                                         }
-                                        for ($i=0; $i<$number2; $i++){
-                                            $idVisits=$array2[$i]['IdVisits'];
+                                        for ($a=0; $a<$number2; $a++){
+                                            $idVisits=$array2[$a]['IdVisits'];
                                             $sql3="SELECT * FROM Visits WHERE IdVisit='$idVisits'";
                                             if($results3 = @$connection->query($sql3)){
                                                 $counter3=0;
@@ -92,17 +94,77 @@
                                                     $array3[$counter3]=$user3;
                                                     $counter3++;
                                                 }
-                                                //!!!!!!!!!nie znajduje wszystkich wizyt, tylko 1
                                                 echo "<ul>";
-                                                for ($i=0; $i<$number3; $i++){
-                                                    $date=$array3[$i]['Time'];
-                                                    $doctor=$array3[$i]['NrDoctor'];
+                                                for ($b=0; $b<$number3; $b++){
+                                                    $date=$array3[$b]['Time'];
+                                                    $doctor=$array3[$b]['NrDoctor'];
                                                     $sqlD="SELECT * FROM Doctors WHERE NrDoctor='$doctor'";
                                                     $resultsD = @$connection->query($sqlD);
                                                     $userD=mysqli_fetch_assoc($resultsD);
                                                     $name=$userD['FirsName'];
                                                     $secondName=$userD['SecondName'];
-                                                    echo "<li>"."Data wizyty: <b>".$date."</b><br/>Doktor: ".$name." ".$secondName."</li>";
+                                                    $specialization=$userD['Specialization'];
+                                                    echo "<li>"."Data wizyty: <b>".$date."</b><br/>Doktor: <b>".$name." ".$secondName."</b> - ".$specialization."</li>";
+                                                    $idSummary=$array2[$a]['IdSummary'];
+
+                                                    //objawy
+                                                    $sql4="SELECT * FROM SymptomsVisits WHERE IdSummaryVIsits='$idSummary'";
+                                                    if($results4 = @$connection->query($sql4)){
+                                                        $counter4=0;
+                                                        $number4=$results4->num_rows;
+                                                        while ($user4=mysqli_fetch_assoc($results4)){
+                                                            $array4[$counter4]=$user4;
+                                                            $counter4++;
+                                                        }
+                                                        echo "Posiadane objawy:<ul>";
+                                                        for ($c=0; $c<$number4; $c++){
+                                                            $idMedicines=$array4[$c]['IdSymptoms'];
+                                                            $sql5="SELECT * FROM Symptoms WHERE IdSymptoms='$idMedicines'";
+                                                            if($results5 = @$connection->query($sql5)){
+                                                                $counter5=0;
+                                                                $number5=$results5->num_rows;
+                                                                while ($user5=mysqli_fetch_assoc($results5)){
+                                                                    $array5[$counter5]=$user5;
+                                                                    $counter5++;
+                                                                }
+                                                                for ($d=0; $d<$number5; $d++){
+                                                                    echo "<li>".$array5[$d]['Name'].": ".$array5[$d]['Description']." - ".$array5[$d]['HowLong']."</li>";
+
+                                                                }
+                                                            }
+                                                        }
+                                                        echo "</ul>";
+                                                    }
+
+                                                    //przepisane leki
+                                                    $sql4="SELECT * FROM MedicinesVisits WHERE IdSummaryVIsits='$idSummary'";
+                                                    if($results4 = @$connection->query($sql4)){
+                                                        $counter4=0;
+                                                        $number4=$results4->num_rows;
+                                                        while ($user4=mysqli_fetch_assoc($results4)){
+                                                            $array4[$counter4]=$user4;
+                                                            $counter4++;
+                                                        }
+                                                        echo "Zapisane leki:<ul>";
+                                                        for ($c=0; $c<$number4; $c++){
+                                                            $idMedicines=$array4[$c]['IdMedicines'];
+                                                            $sql5="SELECT * FROM Medicines WHERE IdMedicines='$idMedicines'";
+                                                            if($results5 = @$connection->query($sql5)){
+                                                                $counter5=0;
+                                                                $number5=$results5->num_rows;
+                                                                while ($user5=mysqli_fetch_assoc($results5)){
+                                                                    $array5[$counter5]=$user5;
+                                                                    $counter5++;
+                                                                }
+                                                                for ($d=0; $d<$number5; $d++){
+                                                                    echo "<li>".$array5[$d]['Name'].": ".$array5[$d]['Description']."; dawkowanie: ".$array5[$d]['Dosage']."</li>";
+                                                                }
+                                                            }
+                                                        }
+                                                        echo "</ul>";
+                                                    }
+
+
                                                 }
                                                 echo "</ul>";
                                             }

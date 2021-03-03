@@ -1,5 +1,5 @@
 /*STRONA GLOWNA PACJENTA I LEKARZA*/
- 
+
 .logout{ 
     width: 120px;
     height: 30px;
@@ -10,6 +10,7 @@
     margin: 10px;
     border-radius: 10px;
     font-weight: bold;
+    float:left;
 }
 
 .logout:hover{
@@ -20,6 +21,15 @@
 .logout_text{
     text-decoration: none;
     color: rgb(48, 48, 48);
+}
+
+#timer{
+    margin-top: 10px;
+    float: left;
+    margin-left: 1400px;
+    width: 300px;
+    padding: 15px;
+    font-size: 24px;
 }
 
 nav{

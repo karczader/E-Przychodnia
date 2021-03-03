@@ -21,6 +21,10 @@ ul > li{
     margin-top: 15px;
 }
 
-ul > li > ul > li{
+ul > li > ul {
     font-size: 14px;
+}
+
+ul > li > ul  > ul > li {
+    margin-top: 0px;
 }
