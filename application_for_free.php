@@ -92,15 +92,26 @@
     <link rel="stylesheet" href="css/loginRegistration.css" type="text/css"/>
     <link rel="stylesheet" href="css/fontello.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet"> 
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="timer.js"> </script>
+
 
     
 </head>
 
-<body>
-        <a href="logout.php" class="logout_text">
-            <div class="logout">Wyloguj się </div>
-        </a>
+<body onload="countingTime()">
+     
+        <div class="navtop">
+            <a href="logout.php" class="logout_text">
+                <div class="logout">Wyloguj się </div>
+            </a>
+
+            <div id="timer"></div>   
+
+
+            <div style="clear:both;"></div>
+        </div>
    
 
     <header id="logo_header">
@@ -120,7 +131,7 @@
         </ol>   
     </nav>
 
-    <main class="container">
+    <main >
 
         <article> 
 

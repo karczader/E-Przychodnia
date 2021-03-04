@@ -2,7 +2,6 @@
 
 .logout{ 
     width: 120px;
-    height: 30px;
     text-align: center;
     text-transform: uppercase;
     padding: 15px;
@@ -11,6 +10,15 @@
     border-radius: 10px;
     font-weight: bold;
     float:left;
+}
+
+#timer{
+    font-family: 'Inconsolata', monospace;
+}
+
+.navtop{
+    height: 80px;
+    
 }
 
 .logout:hover{
@@ -78,11 +86,26 @@ ol>a>li:hover{
 
 
 article{
-    margin-left: 150px;
-    margin-right: 150px;
+    
     padding-top: 50px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    min-height: 450px;
+    padding: 50px;
     text-align: justify;
+    width: 1200px;
+    background-color: rgb(231, 233, 233);
+
+}
+
+.navigation{
+    float: left;
+    padding: 15px;
+    margin-left: 50px;
+}
+
+.image{
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.container{
+    margin-top: 80px;
 }

@@ -19,20 +19,27 @@
         <link rel="stylesheet" href="css/edit_data.css" type="text/css"/>
         <link rel="stylesheet" href="css/fontello.css" type="text/css" />
         <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet"> 
-        
+        <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
+
+        <script type="text/javascript" src="timer.js"> </script>
+
 
         
     </head>
 
-    <body>
-            <a href="index.php" class="logout_text">
+    <body onload="countingTime()">
+
+        <div class="navtop">
+            <a href="logout.php" class="logout_text">
                 <div class="logout">Wyloguj się </div>
             </a>
-       
 
-        <header id="logo_header">
-            
-        </header>
+            <div id="timer"></div>   
+
+
+            <div style="clear:both;"></div>
+        </div>
+       
 
         <nav>
 
