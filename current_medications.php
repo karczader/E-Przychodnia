@@ -51,7 +51,7 @@
 
             <ol>
                 <a href="main_patient.php"><li>Strona główna</li></a>
-                <a href="#"><li>Rejestracja na wizytę</li> </a>
+                <a href="registration.php"><li>Rejestracja na wizytę</li> </a>
                 <a href="history_medical.php"><li>Historia chorób</li> </a>
                 <a href="current_medications.php"><li>Aktualne leki</li></a>
                 <a href="#"><li>Powiadomienia</li></a>

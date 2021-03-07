@@ -43,7 +43,7 @@
 
             <ol>
                 <a href="main_patient.php"><li>Strona główna</li></a>
-                <a href="#"><li>Rejestracja na wizytę</li> </a>
+                <a href="registration.php"><li>Rejestracja na wizytę</li> </a>
                 <a href="history_medical.php"><li>Historia chorób</li> </a>
                 <a href="current_medications.php"><li>Aktualne leki</li></a>
                 <a href="#"><li>Powiadomienia</li></a>
@@ -153,9 +153,8 @@
                     ?>
 
                     <div>
-                        <div><input style="float:left;" type="submit" value="Zapisz zmiany"/></div>
-                        <a style="float:left;" href="main_patient.php"><div id="back">Anuluj</div></a>
-                        <div style="clear:both";></div>
+                        <div><input type="submit" value="Zapisz zmiany"/></div>
+                        <a href="main_patient.php"><div id="back">Anuluj</div></a>
                     </div>
 
                    

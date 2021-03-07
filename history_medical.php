@@ -49,7 +49,7 @@
 
             <ol>
                 <a href="main_patient.php"><li>Strona główna</li></a>
-                <a href="#"><li>Rejestracja na wizytę</li> </a>
+                <a href="registration.php"><li>Rejestracja na wizytę</li> </a>
                 <a href="history_medical.php"><li>Historia chorób</li> </a>
                 <a href="current_medications.php"><li>Aktualne leki</li></a>
                 <a href="#"><li>Powiadomienia</li></a>
@@ -112,6 +112,10 @@
                                                     $name=$userD['FirsName'];
                                                     $secondName=$userD['SecondName'];
                                                     $specialization=$userD['Specialization'];
+                                                    $sqlS="SELECT * FROM Specialization WHERE IdSpecialization='$specialization'";
+                                                    $resultsS = @$connection->query($sqlS);
+                                                    $userS=mysqli_fetch_assoc($resultsS);
+                                                    $specialization=$userS['Name'];
                                                     echo "<li>"."Data wizyty: <b>".$date."</b><br/>Doktor: <b>".$name." ".$secondName."</b> - ".$specialization."</li>";
                                                     $idSummary=$array2[$a]['IdSummary'];
 

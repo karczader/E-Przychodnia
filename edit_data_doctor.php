@@ -98,9 +98,8 @@
                     ?>
 
                     <div>
-                        <div><input style="float:left;" type="submit" value="Zapisz zmiany"/></div>
-                        <a style="float:left;" href="main_doctor.php"><div id="back">Anuluj</div></a>
-                        <div style="clear:both";></div>
+                        <div><input type="submit" value="Zapisz zmiany"/></div>
+                        <a href="main_doctor.php"><div id="back">Anuluj</div></a>
                     </div>
 
                    

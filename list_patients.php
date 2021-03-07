@@ -88,7 +88,7 @@
                                         $row=$results2->fetch_assoc();
                                         $name=$row['FirstName'];
                                         $secondName=$row['SecondName'];
-                                        echo "<li><b>".$name." ".$secondName."</li>";
+                                        echo "<li>".$name." ".$secondName."</li>";
                                     
                                     }
                                 }

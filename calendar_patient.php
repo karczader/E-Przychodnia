@@ -51,7 +51,7 @@
 
         <ol>
             <a href="main_patient.php"><li>Strona główna</li></a>
-            <a href="#"><li>Rejestracja na wizytę</li> </a>
+            <a href="registration.php"><li>Rejestracja na wizytę</li> </a>
             <a href="history_medical.php"><li>Historia chorób</li> </a>
             <a href="current_medications.php"><li>Aktualne leki</li></a>
             <a href="#"><li>Powiadomienia</li></a>
@@ -94,7 +94,12 @@
                                         $row=$results2->fetch_assoc();
                                         $name=$row['FirsName'];
                                         $secondName=$row['SecondName'];
-                                        echo "<li><b>".$time."</b><br/>Doktor: ".$name." ".$secondName."</li>";
+                                        $specialization=$row['Specialization'];
+                                        $sqlS="SELECT * FROM Specialization WHERE IdSpecialization='$specialization'";
+                                        $resultsS = @$connection->query($sqlS);
+                                        $userS=mysqli_fetch_assoc($resultsS);
+                                        $specialization=$userS['Name'];
+                                        echo "<li><b>".$time."</b><br/>Doktor: ".$name." ".$secondName." - ".$specialization."</li>";
                                     
                                     }
 
