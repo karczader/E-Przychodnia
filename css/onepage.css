@@ -28,3 +28,14 @@ ul > li > ul {
 ul > li > ul  > ul > li {
     margin-top: 0px;
 }
+
+li>a:hover{
+    color:#003399;
+}
+
+li>b>a:hover{
+    color:#003399;
+}
+.healty{
+    color: rgb(48, 48, 48);
+}

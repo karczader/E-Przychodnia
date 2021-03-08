@@ -52,7 +52,7 @@
                 <a href="registration.php"><li>Rejestracja na wizytę</li> </a>
                 <a href="history_medical.php"><li>Historia chorób</li> </a>
                 <a href="current_medications.php"><li>Aktualne leki</li></a>
-                <a href="#"><li>Powiadomienia</li></a>
+                <a href="message.php"><li>Powiadomienia</li></a>
                 <a href="calendar_patient.php"><li>Kalendarz</li></a>
                 <a href="edit_data_patient.php"><li>Edytuj dane</li></a>
             </ol>   
@@ -69,8 +69,8 @@
                     <div class="window">
                         <fieldset>
                         <legend>Wybierz objawy</legend>
-                            <div><label><input type="checkbox" value="Pediatra" name="symptoms[]">chore dziecko</label></div>
-                            <div><label><input type="checkbox" value="Ginekolog" name="symptoms[]">problemy z okresem</label></div>
+                            <div><label><input type="checkbox" value="pediatra" name="symptoms[]">chore dziecko</label></div>
+                            <div><label><input type="checkbox" value="ginekolog" name="symptoms[]">problemy z okresem</label></div>
                         </fieldset>
                     </div>
 

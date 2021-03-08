@@ -88,8 +88,8 @@
                                         $row=$results2->fetch_assoc();
                                         $name=$row['FirstName'];
                                         $secondName=$row['SecondName'];
-                                        echo "<li>".$name." ".$secondName."</li>";
-                                    
+                                        if ($array[$i]['Type']=='chory') echo "<li><b><a href='data_one_patient.php'>".$name." ".$secondName." - leczony </a></b></li>";
+                                        else echo "<li><a href='data_one_patient.php' class='healty'>".$name." ".$secondName." - zdrowy </a></li>";
                                     }
                                 }
                             }

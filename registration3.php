@@ -55,6 +55,8 @@
 
     }
 
+    //WYBOR DATY Z KALENDARZA LEKARZA!!!
+
     if ($yourDoctor[0]==1){
         //jeesli wybrano konkretnego lekarza
 

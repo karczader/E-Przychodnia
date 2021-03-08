@@ -54,7 +54,7 @@
             <a href="registration.php"><li>Rejestracja na wizytę</li> </a>
             <a href="history_medical.php"><li>Historia chorób</li> </a>
             <a href="current_medications.php"><li>Aktualne leki</li></a>
-            <a href="#"><li>Powiadomienia</li></a>
+            <a href="message.php"><li>Powiadomienia</li></a>
             <a href="calendar_patient.php"><li>Kalendarz</li></a>
             <a href="edit_data_patient.php"><li>Edytuj dane</li></a>
         </ol>   

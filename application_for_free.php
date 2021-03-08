@@ -108,7 +108,7 @@
                                     $idPatientMessage=$userMessage['IdPatient'];
                                     //wyslanie informacji pacjentowi o danym id
                                     $text='Twoja wizyta w dniu '.date("d-m-Y",mktime(0,0,0,$month,$day,$year))." została niestety odwołania, prosimy umów się ponownie";
-                                    $sendMessage="INSERT INTO Message VALUES (NULL, '$idPatientMessage', '$text', 0)";
+                                    $sendMessage="INSERT INTO Message VALUES (NULL, '$idPatientMessage', '$id', '$text', 0)";
                                     $connection->query($sendMessage);
                                 }
                             }
