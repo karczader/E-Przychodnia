@@ -16,15 +16,11 @@ fieldset{
     outline: none;
 }
 
-article{
-    background-color: white;
-}
-
 form{
     width: 600px;
     margin-left: auto;
     margin-top: auto;
     padding: 10px;
     border: 1px rgb(48, 48, 48) solid;
-    background-color:rgb(231, 233, 233);
+    background-color:rgb(232, 232, 232);
 }

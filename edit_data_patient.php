@@ -57,7 +57,7 @@
             <article >
                 <h3>Edytuj swoje dane</h3>
 
-                <form action="edit_check_patient.php" method="post">
+                <form action="are_you_sure_patient.php" method="post">
 
 
                     <?php
@@ -96,7 +96,6 @@
                             echo $_SESSION['Locality'];
                         }?>"/>
                     </div>
-
                     <div class="form_element">E-mail<br>
                         <input type="text" name="newEmail" value="<?php
                          if(isset($_SESSION['emailF'])){
@@ -108,7 +107,6 @@
                         }
                        ?>"/>
                     </div>
-
                     <?php
                     if(isset($_SESSION['error_email'])){
                         echo $_SESSION['error_email'];
@@ -126,7 +124,6 @@
                             echo $_SESSION['Pesel'];
                         }?>"/>
                     </div>
-
                     <?php
                     if(isset($_SESSION['error_pesel'])){
                         echo $_SESSION['error_pesel'];
@@ -144,11 +141,20 @@
                     <div class="form_element">Hasło<br>
                         <input type="password" name="newPassword" value="********"/>
                     </div>
-
                     <?php
                     if(isset($_SESSION['error_password'])){
                         echo $_SESSION['error_password'];
                         unset($_SESSION['error_password']);
+                    }
+                    ?>
+
+                    <div class="form_element">Powtórz hasło<br>
+                        <input type="password" name="newPassword2" value="********"/>
+                    </div>
+                    <?php
+                    if(isset($_SESSION['error_password2'])){
+                        echo $_SESSION['error_password2'];
+                        unset($_SESSION['error_password2']);
                     }
                     ?>
 

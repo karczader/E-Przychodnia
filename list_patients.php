@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <link rel="stylesheet" href="css/main.css" type="text/css"/>
         <link rel="stylesheet" href="css/onepage.css" type="text/css"/>
+        <link rel="stylesheet" href="css/list_of_patient.css" type="text/css"/>
         <link rel="stylesheet" href="css/fontello.css" type="text/css" />
         <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap" rel="stylesheet">
@@ -66,6 +67,7 @@
 
                 <h2>Twoi pacjenci</h2>
                 <ul>
+                <form method="post" action="data_one_patient.php">
                     <?php
                             if($connection->connect_errno!=0){
                             echo "Error: ".$connection->conncect_errno;
@@ -88,8 +90,9 @@
                                         $row=$results2->fetch_assoc();
                                         $name=$row['FirstName'];
                                         $secondName=$row['SecondName'];
-                                        if ($array[$i]['Type']=='chory') echo "<li><b><a href='data_one_patient.php'>".$name." ".$secondName." - leczony </a></b></li>";
-                                        else echo "<li><a href='data_one_patient.php' class='healty'>".$name." ".$secondName." - zdrowy </a></li>";
+                                        $_SESSION['IdPatient']=$idPatient;
+                                        if ($array[$i]['Type']=='chory') echo "<li><b>".$name." ".$secondName." - leczony</b><input type='submit' name='indeks' value='Zobacz wiecej'/></li>";
+                                        else echo "<li>".$name." ".$secondName." - zdrowy<input type='submit' name='$idPatient' value='Zobacz więcej'/></li>";
                                     }
                                 }
                             }
@@ -97,6 +100,7 @@
                         }
 
                     ?>
+                <form>
                 </ul>
                 
             </article>

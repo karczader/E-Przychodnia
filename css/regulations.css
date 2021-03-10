@@ -1,0 +1,9 @@
+ a{
+     color: black;
+     border-bottom: none;
+ }
+
+ a:visited{
+    color: black;
+    border-bottom: none;
+}

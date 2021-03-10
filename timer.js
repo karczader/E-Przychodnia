@@ -1,8 +1,7 @@
 
     function countinggTime(){
-        alert("Hello! I am an alert box!!");
         
-        /*var time = new Date();
+        var time = new Date();
         var day=time.getDate();
         if(day<10) day="0"+day;
         var monthNr = time.getMonth(); //bo numeracja miesiecy jest od 0
@@ -28,10 +27,11 @@
         var minute =  time.getMinutes();
         if(minute<10) minute="0"+minute;
         var second = time.getSeconds();
-        if(second<10) second="0"+second;*/
+        if(second<10) second="0"+second;
 
 
-        //document.getElementById("timer").innerHTML= day+"-"+month+"-"+year+" | "+hour+":"+minute+":"+second;
+        document.getElementById("timer").innerHTML= day+"-"+month+"-"+year+" | "+hour+":"+minute+":"+second;
+        //document.getElementById("timer").innerHTML="hej";
 
-        //setTimeout("countingTime()", 1000);
+        setTimeout("countingTime()", 1000);
     }

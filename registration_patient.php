@@ -20,6 +20,7 @@
 
         <link rel="stylesheet" href="css/style.css" type="text/css"/>
         <link rel="stylesheet" href="css/loginRegistration.css" type="text/css"/>
+        <link rel="stylesheet" href="css/regulations.css" type="text/css"/>
         <link rel="stylesheet" href="css/fontello.css" type="text/css" />
         <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap" rel="stylesheet"> 
         
@@ -37,48 +38,72 @@
 
        <main class>
 
-            <form style="height: 900px; padding-top: 50px;" action="registration_check_patient.php" method="post" class="login_form">
+            <form style=" padding-top: 50px;" action="registration_check_patient.php" method="post" class="login_form">
 
                 Imię<br/> 
-                <input type="text" name="firstName" placeholder="Jan" value="<?php
+                <input required type="text" name="firstName" placeholder="Jan" value="<?php
                 if(isset($_SESSION['firstNameF'])){
                     echo $_SESSION['firstNameF'];
                     unset($_SESSION['firstNameF']);
                 } ?>"/>
                 <br/> 
+                <?php
+                if(isset($_SESSION['error_firstName'])){
+                    echo $_SESSION['error_firstName'];
+                    unset($_SESSION['error_firstName']);
+                }
+                ?>
 
                 Nazwisko<br/> 
-                <input type="text" name="secondName" placeholder="Kowalski" value="<?php
+                <input required type="text" name="secondName" placeholder="Kowalski" value="<?php
                 if(isset($_SESSION['secondNameF'])){
                     echo $_SESSION['secondNameF'];
                     unset($_SESSION['secondNameF']);
                 } ?>"/>
                 <br/> 
+                <?php
+                if(isset($_SESSION['error_secondName'])){
+                    echo $_SESSION['error_secondName'];
+                    unset($_SESSION['error_secondName']);
+                }
+                ?>
+                
 
                 Data urodzenia<br/> 
-                <input type="date" name="data" placeholder="1978-02-14" value="<?php
+                <input required type="date" name="data" placeholder="1978-02-14" value="<?php
                 if(isset($_SESSION['dataF'])){
                     echo $_SESSION['dataF'];
                     unset($_SESSION['dataF']);
                 } ?>"/>
                 <br/> 
+                <?php
+                if(isset($_SESSION['error_date'])){
+                    echo $_SESSION['error_date'];
+                    unset($_SESSION['error_date']);
+                }
+                ?>
 
                 Miejscowość<br/> 
-                <input type="text" name="locality" placeholder="Warszawa" value="<?php
+                <input required type="text" name="locality" placeholder="Warszawa" value="<?php
                 if(isset($_SESSION['localityF'])){
                     echo $_SESSION['localityF'];
                     unset($_SESSION['localityF']);
                 } ?>"/>
                 <br/> 
+                <?php
+                if(isset($_SESSION['error_locality'])){
+                    echo $_SESSION['error_locality'];
+                    unset($_SESSION['error_locality']);
+                }
+                ?>
 
                 E-mail<br/> 
-                <input type="text" name="email" placeholder="jan.kowalski@gmail.com" value="<?php
+                <input required type="text" name="email" placeholder="jan.kowalski@gmail.com" value="<?php
                 if(isset($_SESSION['emailF'])){
                     echo $_SESSION['emailF'];
                     unset($_SESSION['emailF']);
                 } ?>"/>
                 <br/> 
-
                 <?php
                 if(isset($_SESSION['error_email'])){
                     echo $_SESSION['error_email'];
@@ -88,13 +113,12 @@
                 
 
                 Pesel<br/> 
-                <input type="text" name="pesel" placeholder="20874698725" value="<?php
+                <input required type="text" name="pesel" placeholder="20874698725" value="<?php
                 if(isset($_SESSION['peselF'])){
                     echo $_SESSION['peselF'];
                     unset($_SESSION['peselF']);
                 } ?>"/>
                 <br/> 
-
                 <?php
                 if(isset($_SESSION['error_pesel'])){
                     echo $_SESSION['error_pesel'];
@@ -103,21 +127,26 @@
                 ?>
 
                 Numer telefonu<br/> 
-                <input type="text" name="phone" placeholder="514789657" value="<?php
+                <input required type="text" name="phone" placeholder="514789657" value="<?php
                 if(isset($_SESSION['phoneF'])){
                     echo $_SESSION['phoneF'];
                     unset($_SESSION['phoneF']);
                 } ?>"/>
                 <br/> 
+                <?php
+                if(isset($_SESSION['error_phone'])){
+                    echo $_SESSION['error_phone'];
+                    unset($_SESSION['error_phone']);
+                }
+                ?>
 
                 Hasło<br/> 
-                <input type="password" name="password1" placeholder="********" value="<?php
+                <input required type="password" name="password1" placeholder="********" value="<?php
                 if(isset($_SESSION['password1F'])){
                     echo $_SESSION['password1F'];
                     unset($_SESSION['password1F']);
                 } ?>"/>
                 <br/><br/>
-
                 <?php
                 if(isset($_SESSION['error_password'])){
                     echo $_SESSION['error_password'];
@@ -126,8 +155,23 @@
                 ?>
 
                 Powtórz hasło<br/> 
-                <input type="password" name="password2" placeholder="********"/>
+                <input required type="password" name="password2" placeholder="********"/>
                 <br/><br/>
+
+                <label>
+                <input required type="checkbox" name="regulations" <?php
+                    if(isset($_SESSION['regulationsF'])){
+                        echo "checked";
+                        unset($_SESSION['regulationsF']);
+                    }
+                ?> />Akceptuje <a href="regulations.php" target="_blank">regulamin</a>
+                </label>
+                <?php
+                    if(isset($_SESSION['error_regulations'])){
+                        echo $_SESSION['error_regulations'];
+                        unset($_SESSION['error_regulations']);
+                    }
+                ?>
             
                
                 <input type="submit" value="Zarejestruj się!"/>

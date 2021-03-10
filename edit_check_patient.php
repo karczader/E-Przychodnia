@@ -11,29 +11,29 @@ session_start();
         $ifUpdate=true;
         $counter=0;
 
-        if ($_POST['newFirstName']!=$_SESSION['FirstName']){
-            $name=$_POST['newFirstName'];
-            $_SESSION['FirstName']=$_POST['newFirstName'];
+        if ($_SESSION['newFirstNameForm']!=$_SESSION['FirstName']){
+            $name= $_SESSION['newFirstNameForm'];
+            $_SESSION['FirstName']= $_SESSION['newFirstNameForm'];
             $connection->query("UPDATE Patiens SET FirstName='$name' WHERE IdPatient=$id");
             $counter++;
         }
 
-        if ($_POST['newSecondName']!=$_SESSION['SecondName']){
-            $name=$_POST['newSecondName'];
-            $_SESSION['SecondName']=$_POST['newSecondName'];
+        if ($_SESSION['newSecondNameForm']!=$_SESSION['SecondName']){
+            $name=$_SESSION['newSecondNameForm'];
+            $_SESSION['SecondName']=$_SESSION['newSecondNameForm'];
             $connection->query("UPDATE Patiens SET SecondName='$name' WHERE IdPatient=$id");
             $counter++;
         }
 
-        if ($_POST['newDateOfBirth']!=$_SESSION['DateOfBirth']){
-            $name=$_POST['newDateOfBirth'];
-            $_SESSION['DateOfBirth']=$_POST['newDateOfBirth'];
+        if ($_SESSION['newDateOfBirthForm']!=$_SESSION['DateOfBirth']){
+            $name=$_SESSION['newDateOfBirthForm'];
+            $_SESSION['DateOfBirth']=$_SESSION['newDateOfBirthForm'];
             $connection->query("UPDATE Patiens SET DateOfBirth='$name' WHERE IdPatient=$id");
             $counter++;
         }
 
-        if ($_POST['newEmail']!=$_SESSION['Email']){
-            $name=$_POST['newEmail'];
+        if ($_SESSION['newEmailForm']!=$_SESSION['Email']){
+            $name=$_SESSION['newEmailForm'];
             $emailB=filter_var($name, FILTER_SANITIZE_EMAIL);
             if (filter_var($emailB, FILTER_VALIDATE_EMAIL)==false || $emailB!=$email){
                 $ifUpdate=false;
@@ -41,36 +41,36 @@ session_start();
                 $_SESSION['emailF']=$name;
             }
             else{
-                $_SESSION['Email']=$_POST['newEmail'];
+                $_SESSION['Email']=$_SESSION['newEmailForm'];
                 $connection->query("UPDATE Patiens SET Email='$name' WHERE IdPatient=$id");
                 $counter++;
             }
         }
 
-        if ($_POST['newPesel']!=$_SESSION['Pesel']){
-            $name=$_POST['newPesel'];
+        if ($_SESSION['newPeselForm']!=$_SESSION['Pesel']){
+            $name=$_SESSION['newPeselForm'];
             if(strlen($name)!=11){
                 $ifUpdate=false;
                 $_SESSION['error_pesel']='<span style="color: red; margin-left: 50px;">Pesel musi miec 11 znakow</span>';
                 $_SESSION['peselF']=$name;
             }
             else{
-                $_SESSION['Pesel']=$_POST['newPesel'];
+                $_SESSION['Pesel']=$_SESSION['newPeselForm'];
                 $connection->query("UPDATE Patiens SET Pesel='$name' WHERE IdPatient=$id");
                 $counter++;
             }
             
         }
 
-        if ($_POST['newPhoneNumber']!=$_SESSION['PhoneNumber']){
-            $name=$_POST['newPhoneNumber'];
-            $_SESSION['PhoneNumber']=$_POST['newPhoneNumber'];
+        if ( $_SESSION['newPhoneNumberForm']!=$_SESSION['PhoneNumber']){
+            $name=$_SESSION['newPhoneNumberForm'];
+            $_SESSION['PhoneNumber']=$_SESSION['newPhoneNumberForm'];
             $connection->query("UPDATE Patiens SET PhoneNumber='$name' WHERE IdPatient=$id");
             $counter++;
         }
 
-        if ($_POST['newPassword']!="********"){
-            $name=$_POST['newPassword'];
+        if ($_SESSION['newPasswordForm']!="********"){
+            $name=$_SESSION['newPasswordForm'];
             if (strlen($name)<8 || strlen($name)>20){
                 $ifUpdate=false;
                 $_SESSION['error_password']='<span style="color: red; margin-left: 50px;">Haslo musi 
@@ -84,6 +84,13 @@ session_start();
            
         }
 
+            $name=$_SESSION['newPassword2Form'];
+            if ($_SESSION['newPasswordForm']!=$_SESSION['newPassword2Form']){
+                $ifUpdate=false;
+                $_SESSION['error_password2']='<span style="color: red; margin-left: 50px;">Hasła muszą być takie same</span>';
+            }
+        
+
         $connection->close();
         if($ifUpdate && $counter>0) {
             $_SESSION['update_okay']='<span style="margin-left: 5px">Zaktualizowano dane</span>';
@@ -93,3 +100,5 @@ session_start();
             header('Location: edit_data_patient.php');
         }
     }
+
+?>

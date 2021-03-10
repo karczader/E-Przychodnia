@@ -6,6 +6,7 @@
 
         $today=date("d-m-Y");
         $todayUnix=time();
+        $todayUnix=$todayUnix-(24*60*60);
         
         $beginning=$_POST['beginning'];
         $year=1000*$beginning[0]+100*$beginning[1]+10*$beginning[2]+$beginning[3];
@@ -48,79 +49,85 @@
         else{
             if ($beginningUnix<=$endUnix){
                 
-        
-                if($connection->connect_errno!=0){
-                    echo "Error: ".$connection->conncect_errno;
-                }
-                else{
-        
-                    
-                    //sprawdzenie czy mozna wziac jeszcze urlop na wakacje
-                    if($_POST['free']=="wakacje")
-                    {
-                        $howlong=$endUnix-$beginningUnix; //w sekundach
-                        $howlong=(($howlong/60)/60)/24;
-                        $sql="SELECT * FROM Doctors WHERE NrDoctor='$id'";
-                        if($results = @$connection->query($sql)){
-                            $user=$results->fetch_assoc();
-                            if($user['DaysForVacation']<$howlong){
-                                $_SESSION['error_vacation']='<span style="color: red;">Nie mozna wziac tak dlugiego urlopu, pozostale dni wolne na wakacje to:'.$user['DaysForVacation'].' </span>';
-                            }
-                            else{
-                                $difference=$user['DaysForVacation']-$howlong;
-                                $sql3="UPDATE Doctors SET DaysForVacation='$difference' WHERE NrDoctor='$id'";
-                                $connection->query($sql3);
-
-                                //take_vacation($id, $type);
-
-                                $_SESSION['okay']='<span style="color: rgb(48, 48, 48);">Wzięto urlop!</span>';
-                                //dodanie urlopy do tabeli urlopow
-                                $beginning=$_POST['beginning'];
-                                $end=$_POST['end'];
-                                $sql2="INSERT INTO FreeDays VALUES(NULL, '$id', '$type', '$beginning', '$end' )";
-                                $connection->query($sql2);
-                            }
-                        }
-                        
+                    if($connection->connect_errno!=0){
+                        echo "Error: ".$connection->conncect_errno;
                     }
                     else{
-                        //take_vacation($id, $type);
-
-                        $_SESSION['okay']='<span style="color: rgb(48, 48, 48);">Wzięto urlop!</span>';
-                        //dodanie urlopy do tabeli urlopow
-                        $beginning=$_POST['beginning'];
-                        $end=$_POST['end'];
-                        $sql2="INSERT INTO FreeDays VALUES(NULL, '$id', '$type', '$beginning', '$end' )";
-                        $connection->query($sql2);
-                    }
+            
+                        
+                        //sprawdzenie czy mozna wziac jeszcze urlop na wakacje
+                        if($_POST['free']=="wakacje")
+                        {
+                            $permissionForVacation=$todayUnix+(30*24*60*60);
+                            if($permissionForVacation>=$beginningUnix){
+                                $_SESSION['error']='<span style="color: red;">Urlop można wziąć tylko z 30 dniowym wyprzedzeniem</span>';
+                            }
+                            else{
+                                $howlong=$endUnix-$beginningUnix; //w sekundach
+                                $howlong=(($howlong/60)/60)/24;
+                                $sql="SELECT * FROM Doctors WHERE NrDoctor='$id'";
+                                if($results = @$connection->query($sql)){
+                                    $user=$results->fetch_assoc();
+                                    if($user['DaysForVacation']<$howlong){
+                                        $_SESSION['error_vacation']='<span style="color: red;">Nie mozna wziac tak dlugiego urlopu, pozostale dni wolne na wakacje to:'.$user['DaysForVacation'].' </span>';
+                                    }
+                                    else{
+                                        $difference=$user['DaysForVacation']-$howlong;
+                                        $sql3="UPDATE Doctors SET DaysForVacation='$difference' WHERE NrDoctor='$id'";
+                                        $connection->query($sql3);
         
+                                        //take_vacation($id, $type);
         
-                   
-                    //znalezienie wizyt w podanych terminach i wyslanie informacji pacjentom
-                    $sqlMessage="SELECT * FROM Visits WHERE NrDoctor='$id'";
-                    if($resultsMessage = @$connection->query($sqlMessage)){
-                            while ($userMessage=mysqli_fetch_assoc($resultsMessage)){
-                                $year=1000*$userMessage['Time'][0]+100*$userMessage['Time'][1]+10*$userMessage['Time'][2]+$userMessage['Time'][3];
-                                $month=10*$userMessage['Time'][5]+$userMessage['Time'][6];
-                                $day=10*$userMessage['Time'][8]+$userMessage['Time'][9];
-                                $timeVisits=mktime(0,0,0,$month,$day,$year);
-                                if ($beginningUnix<=$timeVisits && $timeVisits<=$endUnix) {
-                                    $idPatientMessage=$userMessage['IdPatient'];
-                                    //wyslanie informacji pacjentowi o danym id
-                                    $text='Twoja wizyta w dniu '.date("d-m-Y",mktime(0,0,0,$month,$day,$year))." została niestety odwołania, prosimy umów się ponownie";
-                                    $sendMessage="INSERT INTO Message VALUES (NULL, '$idPatientMessage', '$id', '$text', 0)";
-                                    $connection->query($sendMessage);
+                                        $_SESSION['okay']='<span style="color: rgb(48, 48, 48);">Wzięto urlop!</span>';
+                                        //dodanie urlopy do tabeli urlopow
+                                        $beginning=$_POST['beginning'];
+                                        $end=$_POST['end'];
+                                        $sql2="INSERT INTO FreeDays VALUES(NULL, '$id', '$type', '$beginning', '$end' )";
+                                        $connection->query($sql2);
+                                    }
                                 }
                             }
+                         
+                            
+                        }
+                        else{
+                            //take_vacation($id, $type);
+    
+                            $_SESSION['okay']='<span style="color: rgb(48, 48, 48);">Wzięto urlop!</span>';
+                            //dodanie urlopy do tabeli urlopow
+                            $beginning=$_POST['beginning'];
+                            $end=$_POST['end'];
+                            $sql2="INSERT INTO FreeDays VALUES(NULL, '$id', '$type', '$beginning', '$end' )";
+                            $connection->query($sql2);
+                        }
+            
+            
+                       
+                        //znalezienie wizyt w podanych terminach i wyslanie informacji pacjentom
+                        $sqlMessage="SELECT * FROM Visits WHERE NrDoctor='$id'";
+                        if($resultsMessage = @$connection->query($sqlMessage)){
+                                while ($userMessage=mysqli_fetch_assoc($resultsMessage)){
+                                    $year=1000*$userMessage['Time'][0]+100*$userMessage['Time'][1]+10*$userMessage['Time'][2]+$userMessage['Time'][3];
+                                    $month=10*$userMessage['Time'][5]+$userMessage['Time'][6];
+                                    $day=10*$userMessage['Time'][8]+$userMessage['Time'][9];
+                                    $timeVisits=mktime(0,0,0,$month,$day,$year);
+                                    if ($beginningUnix<=$timeVisits && $timeVisits<=$endUnix) {
+                                        $idPatientMessage=$userMessage['IdPatient'];
+                                        //wyslanie informacji pacjentowi o danym id
+                                        $text='Twoja wizyta w dniu '.date("d-m-Y",mktime(0,0,0,$month,$day,$year))." została niestety odwołania, prosimy umów się ponownie";
+                                        $sendMessage="INSERT INTO Message VALUES (NULL, '$idPatientMessage', '$id', '$text', 0)";
+                                        $connection->query($sendMessage);
+                                    }
+                                }
+                        }
+            
+            
+                        //odwolanie wizyt w terminie urlopu
+                        $sql4="DELETE FROM Visits WHERE NrDoctor='$id' && Time BETWEEN '$beginning' AND '$end' ";
+                        $connection->query($sql4);
+            
+            
                     }
-        
-        
-                    //odwolanie wizyt w terminie urlopu
-                    $sql4="DELETE FROM Visits WHERE NrDoctor='$id' && Time BETWEEN '$beginning' AND '$end' ";
-                    $connection->query($sql4);
-        
-        
-                }
             }
             else{
                 $_SESSION['error']='<span style="color: red;">Data zakończenia urlopu musi być późniejsza niż data rozpoczęcia urlopu!</span>';
@@ -191,11 +198,10 @@
 
     <main >
 
-        <article> 
 
            
 
-            <form method="post">
+            <form method="post" class="container">
 
                 <?php
                     if(isset($_SESSION['okay'])){
@@ -236,7 +242,6 @@
             </form>
 
            
-        </article>
 
     </main>
     
